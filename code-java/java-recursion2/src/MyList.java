@@ -51,8 +51,13 @@ public class MyList<T> {
         if (head == null)
             return;
         answer.add(head.clone());
-        if (head.getNext() != null)
+        if (head.getNext() != null)  // there is no need for this line,
             reversed(head.getNext(), answer);
     }
 
+    private void reversed2(ListNode<T> head, MyList<T> answer) throws Exception {
+        if (head == null) return;
+        answer.add(head.clone());
+        reversed(head.getNext(), answer);
+    }
 }

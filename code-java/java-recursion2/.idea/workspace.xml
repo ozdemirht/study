@@ -12,9 +12,12 @@
       <change afterPath="$PROJECT_DIR$/src/Palindrome.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/RecursiveSum.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/ReverseString.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java-recursion/ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-recursion/ListNode.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/java-recursion/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-recursion/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ListNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ListNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MyList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyList.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +48,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/local_disk/projects/study/code-java/java-recursion",
+    "last_opened_file_path": "C:/local_disk/projects/study/code-java/java-recursion2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,6 +114,7 @@
       <workItem from="1657144383353" duration="11689000" />
       <workItem from="1657206047288" duration="1380000" />
       <workItem from="1657208323727" duration="1646000" />
+      <workItem from="1657224129529" duration="424000" />
     </task>
     <task id="LOCAL-00001" summary="first test">
       <created>1657206710397</created>
