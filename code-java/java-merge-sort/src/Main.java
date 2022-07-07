@@ -40,6 +40,12 @@ public class Main {
             merge(data,start, mid, end);
         }
     }
+    /*
+    Time complexity is O(n log n), where n = length(data) because the depth of binary tree is log(n)
+    and there are N comparisons at each level to merge. Hence, O(n log n). Very stable.
+    The space complexity is O(n) where n=length(data).
+    This implementation could have utilized a temp array allocated in mergeSort() once, and re-used.
+     */
     public static void mergeSort(int[] data){
         mergeSort(data,0, data.length-1);
     }
