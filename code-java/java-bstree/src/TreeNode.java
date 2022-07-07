@@ -1,4 +1,4 @@
-public class TreeNode<T> {
+public class TreeNode<T extends Comparable<T>> {
     T data;
     TreeNode<T> left;
     TreeNode<T> right;
