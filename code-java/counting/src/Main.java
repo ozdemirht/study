@@ -7,86 +7,74 @@ public class Main {
         Arrays.stream(input).limit(100).forEach(x-> pout.print(x+" "));
     }
 
-    public static void main(String[] args) {
-        int[] test_A = new int[]{3, 4, 4, 6, 1, 4, 4};
-        Solution solver = new Solution();
-        int[] answer = solver.solution(5, test_A);
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-
-        test_A = new int[]{3, 4, 4, 6, 1, 4, 4, 6, 6, 6, 6, 6, 6, 6};
-
+    static void testSolution(ISolution solver, int N, int[] data){
         long startTime = System.nanoTime();
-        answer = solver.solution(5, test_A);
+        int[] answer = solver.solution(N, data);
         long estimatedTime = System.nanoTime() - startTime;
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        System.out.println("\nTime(solution)="+estimatedTime);
+        //printIntArray(System.out, data);
+        //printIntArray(System.out, answer);
+        System.out.format("\nTime("+solver.getName()+") for %,d = %,.3f msec",data.length,(float)(estimatedTime/1000));
+    }
+    static void testCorrectness(ISolution solver, int N, int[] data, int[] expected, PrintStream pout){
+        int[] answer = solver.solution(N, data);
+        printIntArray(pout, data);
+        printIntArray(pout, answer);
+        pout.print("isPassed?= "+Arrays.equals(answer,expected));
+    }
 
-        startTime = System.nanoTime();
-        answer = solver.solution2(5, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        System.out.println("\nTime(solution2)="+estimatedTime);
+    public static void main(String[] args) {
+        ISolution solver1 = new Solution1();
+        ISolution solver2 = new Solution2();
+        ISolution solver3 = new Solution3();
+        ISolution solver4 = new Solution4();
+        ISolution[] solvers = new ISolution[]{solver1, solver2, solver3, solver4};
+        ISolution solver = solver1;
 
-        startTime = System.nanoTime();
-        answer = solver.solution3(5, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        System.out.println("\nTime(solution3)="+(estimatedTime/1000)+"msec");
-
-        test_A = new int[10001];
         int i, N = 5;
-        for(i=0;i<test_A.length;i++) test_A[i]=((int)(113*Math.random()))%(N+1)+1;
 
-        startTime = System.nanoTime();
-        answer = solver.solution(N, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        System.out.println();
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        //System.out.println("\nTime(solution) for "+test_A.length+"="+(estimatedTime/1000)+"msec");
-        System.out.format("\nTime(solution) for %,d = %,.3f msec"
-                            ,test_A.length,(float)(estimatedTime/1000));
+        int[] test_A = new int[]{3, 4, 4, 6, 1, 4, 4};
+        testCorrectness(solver,N,test_A,new int[]{3,2,2,4,2},System.out);
 
-        startTime = System.nanoTime();
-        answer = solver.solution3(N, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        System.out.println();
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        //System.out.println("\nTime(solution3) for "+test_A.length+"="+(estimatedTime/1000)+"msec");
-        System.out.format("\nTime(solution3) for %,d = %,.3f msec"
-                            ,test_A.length,(float)(estimatedTime/1000));
+        test_A = new int[]{3, 4, 4, 6, 1, 4, 4, 4, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,};
+        testCorrectness(solver,N,test_A,new int[]{5,5,5,5,5},System.out);
 
+        test_A = new int[]{3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,3,3};
+        testCorrectness(solver,N,test_A,new int[]{1,1,3,1,1},System.out);
+
+        test_A = new int[]{6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,6, 6, 6, 6, 6, 6,6, 6, 6, 6, 6, 6};
+        testCorrectness(solver,N,test_A,new int[]{0,0,0,0,0},System.out);
+
+        // test large
+        test_A = new int[10001];
+        for (i = 0; i < test_A.length; i++)
+            test_A[i] = ((int) (113 * Math.random())) % (N + 1) + 1;
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
+
+        // test very large
         test_A = new int[1000001];
-        for(i=0;i<test_A.length;i++) test_A[i]=((int)(113*Math.random()))%(N+1)+1;
+        for (i = 0; i < test_A.length; i++)
+            test_A[i] = ((int) (113 * Math.random())) % (N + 1) + 1;
 
-        startTime = System.nanoTime();
-        answer = solver.solution(N, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        System.out.println();
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        //System.out.println("\nTime(solution) for "+test_A.length+"="+(estimatedTime/1000)+"msec");
-        System.out.format("\nTime(solution) for %,d = %,.3f msec",test_A.length,(float)(estimatedTime/1000));
+        for (i = 0; i < 100000; i++)
+            test_A[(int)(test_A.length*Math.random())%test_A.length] = N + 1;
 
-        startTime = System.nanoTime();
-        answer = solver.solution3(N, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        //System.out.println("\nTime(solution3) for "+test_A.length+"="+(estimatedTime/1000)+"msec");
-        System.out.format("\nTime(solution3) for %,d = %,.3f msec",test_A.length,(float)(estimatedTime/1000));
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
 
-        startTime = System.nanoTime();
-        answer = solver.solution4(N, test_A);
-        estimatedTime = System.nanoTime() - startTime;
-        printIntArray(System.out, test_A);
-        printIntArray(System.out, answer);
-        System.out.format("\nTime(solution4) for %,d = %,.3f msec",test_A.length,(float)(estimatedTime/1000));
+        test_A = new int[5000001];
+        for (i = 0; i < test_A.length; i++)
+            test_A[i] = ((int) (113 * Math.random())) % (N + 1) + 1;
+        for (i = 0; i < 500000; i++)
+            test_A[(int)(test_A.length*Math.random())%test_A.length] = N + 1;
 
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
+        for (ISolution sut : solvers)
+            testSolution(sut, N, test_A);
     }
 }
