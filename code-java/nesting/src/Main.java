@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        //System.out.println("Hello world!");
+       
         String[] tests = new String[]{"()","((((", "(()(())())", "())"};
         ISolution solver = new Solution();
         for(int i=0;i<tests.length;i++) {
