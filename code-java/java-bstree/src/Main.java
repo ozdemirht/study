@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
         MyBST<Integer> test = new MyBST<>();
         int i;
         for(i=0;i<10;i++)
@@ -11,5 +11,7 @@ public class Main {
         test.printAllLeafNodes(System.out);
         System.out.print("\nPost order: ");
         test.printPostOrder(System.out);
+        System.out.print("\nPre order: ");
+        test.printPreOrder(System.out);
     }
 }

@@ -54,9 +54,9 @@ public class MyBST<T extends Comparable<T>> {
     }
     private void printInOrder(PrintStream pout, @NotNull TreeNode<T> start){
         if(start==null) return;
-        pout.print("{"+start.getData()+" [");
+        pout.print("{ [");
         printInOrder(pout,start.getLeft());
-        pout.print(",");
+        pout.print("],"+start.getData()+", [");
         printInOrder(pout,start.getRight());
         pout.print("] }");
     }
@@ -72,9 +72,25 @@ public class MyBST<T extends Comparable<T>> {
         if(start==null) return;
         pout.print("{ [");
         printPostOrder(pout,start.getLeft());
-        pout.print(",");
+        pout.print("] ; [ ");
         printPostOrder(pout,start.getRight());
         pout.print("] "+start.getData()+"}");
+    }
+    public void printPreOrder(PrintStream pout){
+        if(root==null) {
+            pout.println("{}");
+            return;
+        }
+        printPreOrder(pout,root);
+
+    }
+    private void printPreOrder(PrintStream pout, @NotNull TreeNode<T> start){
+        if(start==null) return;
+        pout.print("{ "+start.getData()+", [");
+        printPostOrder(pout,start.getLeft());
+        pout.print("] ; [");
+        printPostOrder(pout,start.getRight());
+        pout.print("] }");
     }
     /*
     Depth First Search on Binary Tree
