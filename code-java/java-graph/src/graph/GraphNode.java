@@ -1,3 +1,5 @@
+package graph;
+
 import com.sun.istack.internal.NotNull;
 
 import java.io.PrintStream;
@@ -7,7 +9,7 @@ public class GraphNode< T extends Comparable<T>> {
     T data;
     ArrayList<GraphNode<T>> edges = new ArrayList<>();
 
-    GraphNode(T data){
+    public GraphNode(T data){
         this.data=data;
     }
 

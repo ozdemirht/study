@@ -1,3 +1,5 @@
+package graph;
+
 import com.sun.istack.internal.NotNull;
 
 import java.io.PrintStream;
@@ -6,10 +8,12 @@ import java.util.*;
 public class MyGraph<T extends Comparable<T>> {
     ArrayList<GraphNode<T>> nodes = new ArrayList<>();
 
-    MyGraph() {
+    public MyGraph() {
 
     }
-
+    public GraphNode<T> getFirstNode(){
+        return (nodes.size()>0?nodes.get(0):null);
+    }
     public void addNode(@NotNull GraphNode<T> aNode) {
         nodes.add(aNode);
     }

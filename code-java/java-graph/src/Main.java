@@ -1,3 +1,6 @@
+import graph.GraphNode;
+import graph.MyGraph;
+
 public class Main {
     public static void main(String[] args) {
 
