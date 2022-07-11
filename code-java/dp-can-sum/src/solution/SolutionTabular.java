@@ -1,6 +1,8 @@
 package solution;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class SolutionTabular implements ISolution {
 
@@ -24,5 +26,9 @@ public class SolutionTabular implements ISolution {
                         r[next_i]++;
                 }
         return r[targetNum]>0;
+    }
+    @Override
+    public List<Integer> howSum(int targetNum, int[] numbers) {
+        return new ArrayList<>();
     }
 }

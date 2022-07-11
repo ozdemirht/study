@@ -8,6 +8,8 @@ import solution.SolutionMemo;
 import solution.SolutionRecursive;
 import solution.SolutionTabular;
 
+import java.util.List;
+
 public class TestSolution {
 
     @Test
@@ -45,5 +47,15 @@ public class TestSolution {
         ISolution solver = new SolutionTabular();
         boolean answer = solver.canSum(7,new int[]{2,4});
         assertEquals(false,answer);
+    }
+
+    @Test
+    public void testSolutionRecursiveHowSum(){
+        ISolution solver = new SolutionRecursive();
+        List<Integer> answer = solver.howSum(7,new int[]{5,3,4,7});
+        assertEquals(true,!answer.isEmpty());
+
+        System.out.print("\nAnswer: ");
+        answer.stream().forEach(x->System.out.print("["+x+"] "));
     }
 }

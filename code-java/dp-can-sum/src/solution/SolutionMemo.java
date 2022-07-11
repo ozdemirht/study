@@ -1,6 +1,8 @@
 package solution;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SolutionMemo implements ISolution {
@@ -21,4 +23,10 @@ public class SolutionMemo implements ISolution {
         memo.put(targetNum,answer);
         return answer;
     }
+
+    @Override
+    public List<Integer> howSum(int targetNum, int[] numbers) {
+        return new ArrayList<>();
+    }
+
 }
