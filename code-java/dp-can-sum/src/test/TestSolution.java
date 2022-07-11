@@ -8,6 +8,7 @@ import solution.SolutionMemo;
 import solution.SolutionRecursive;
 import solution.SolutionTabular;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TestSolution {
@@ -51,11 +52,29 @@ public class TestSolution {
 
     @Test
     public void testSolutionRecursiveHowSum(){
-        ISolution solver = new SolutionRecursive();
-        List<Integer> answer = solver.howSum(7,new int[]{5,3,4,7});
-        assertEquals(true,!answer.isEmpty());
+        testSolutionHowSumBase(new SolutionRecursive(), 7, new int[]{5,3,4,7}, true);
+    }
+    @Test
+    public void testSolutionRecursiveHowSum_NG1(){
+        testSolutionHowSumBase(new SolutionRecursive(), 7, new int[]{2,4}, false);
+    }
+    @Test
+    public void testSolutionMemoHowSum(){
+        testSolutionHowSumBase(new SolutionMemo(), 7, new int[]{5,3,4,7}, true);
+    }
+
+    @Test
+    public void testSolutionMemoHowSum_NG1() {
+        testSolutionHowSumBase(new SolutionMemo(), 7, new int[]{2, 4}, false);
+    }
+
+    final void testSolutionHowSumBase(ISolution solver, int targetNum, int[] numbers, boolean expected) {
+        List<Integer> answer = solver.howSum(targetNum, numbers);
+        if (answer == null) answer = new ArrayList<>();
+        assertEquals(expected, !answer.isEmpty());
 
         System.out.print("\nAnswer: ");
-        answer.stream().forEach(x->System.out.print("["+x+"] "));
+        if (!answer.isEmpty()) answer.stream().forEach(x -> System.out.print("[" + x + "] "));
     }
+
 }

@@ -1,9 +1,6 @@
 package solution;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SolutionMemo implements ISolution {
 
@@ -26,7 +23,28 @@ public class SolutionMemo implements ISolution {
 
     @Override
     public List<Integer> howSum(int targetNum, int[] numbers) {
-        return new ArrayList<>();
+        Deque<Integer> myStack = new ArrayDeque<Integer>();
+        List<Integer> response = null;
+        Map<Integer,Boolean> memo = new HashMap<>();
+
+        boolean answer = howSumMemo(targetNum, numbers, memo, myStack);
+        if (answer) response = new ArrayList<>(myStack);
+        return response;
+    }
+
+    final boolean howSumMemo(int targetNum, int[] numbers, Map<Integer,Boolean> memo, Deque<Integer> stack) {
+        if (targetNum == 0) return true;
+        if (targetNum < 0) return false;
+        if(memo.containsKey(targetNum))
+            return memo.get(targetNum);
+        boolean answer = false;
+        for (int i = 0; !answer && i < numbers.length; i++) {
+            stack.push(numbers[i]);
+            answer = howSumMemo(targetNum - numbers[i], numbers, memo, stack);
+            if (!answer) stack.pop();
+        }
+        memo.put(targetNum,answer);
+        return answer;
     }
 
 }
