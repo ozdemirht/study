@@ -3,10 +3,7 @@ package test;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import solution.ISolution;
-import solution.SolutionMemo;
-import solution.SolutionRecursive;
-import solution.SolutionTabular;
+import solution.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +67,20 @@ public class TestSolution {
 
     final void testSolutionHowSumBase(ISolution solver, int targetNum, int[] numbers, boolean expected) {
         List<Integer> answer = solver.howSum(targetNum, numbers);
+        if (answer == null) answer = new ArrayList<>();
+        assertEquals(expected, !answer.isEmpty());
+
+        System.out.print("\nAnswer: ");
+        if (!answer.isEmpty()) answer.stream().forEach(x -> System.out.print("[" + x + "] "));
+    }
+
+    @Test
+    public void testSolutionRecursiveBestSum(){
+        testSolutionBestSumBase(new SolutionRecursive(), 7, new int[]{5,3,4,7}, true);
+    }
+
+    final void testSolutionBestSumBase(IBestSumSolution solver, int targetNum, int[] numbers, boolean expected) {
+        List<Integer> answer = solver.bestSum(targetNum, numbers);
         if (answer == null) answer = new ArrayList<>();
         assertEquals(expected, !answer.isEmpty());
 
