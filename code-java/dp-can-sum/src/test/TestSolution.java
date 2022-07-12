@@ -78,7 +78,10 @@ public class TestSolution {
     public void testSolutionRecursiveBestSum(){
         testSolutionBestSumBase(new SolutionRecursive(), 7, new int[]{5,3,4,7}, true);
     }
-
+    @Test
+    public void testSolutionRecursiveBestSum_NG1(){
+        testSolutionBestSumBase(new SolutionRecursive(), 7, new int[]{2,4}, false);
+    }
     final void testSolutionBestSumBase(IBestSumSolution solver, int targetNum, int[] numbers, boolean expected) {
         List<Integer> answer = solver.bestSum(targetNum, numbers);
         if (answer == null) answer = new ArrayList<>();

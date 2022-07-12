@@ -1,6 +1,7 @@
 package solution;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class SolutionMemo implements ISolution {
 
