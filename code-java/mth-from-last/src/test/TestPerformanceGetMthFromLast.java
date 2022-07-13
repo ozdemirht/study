@@ -101,5 +101,35 @@ public class TestPerformanceGetMthFromLast {
         System.out.println(M+"# "+(answer==null?"NIL":answer)+" took "+(endTime-startTime)/1000);
         assertEquals(100001,answer);
     }
+    @Test
+    public void testXXLarge_P1() {
+        //
+        LinkedList input = new LinkedList();
+        for(int i=0;i<10000000;i++) input.add(i);
+
+        int M=1000000;
+        IGetMthFromLast solver = new GetMthFromLastV1();
+
+        long startTime = System.nanoTime();
+        Integer answer = solver.getMthFromLast(input,M);
+        long endTime = System.nanoTime();
+        System.out.println(M+"# "+(answer==null?"NIL":answer)+" took "+(endTime-startTime)/1000);
+        assertEquals(9000000,answer);
+    }
+    @Test
+    public void testXXLarge_P2() {
+        //
+        LinkedList input = new LinkedList();
+        for(int i=1;i<=10000000;i++) input.add(i);
+
+        int M=9000000;
+        IGetMthFromLast solver = new GetMthFromLastV1();
+
+        long startTime = System.nanoTime();
+        Integer answer = solver.getMthFromLast(input,M);
+        long endTime = System.nanoTime();
+        System.out.println(M+"# "+(answer==null?"NIL":answer)+" took "+(endTime-startTime)/1000);
+        assertEquals(1000001,answer);
+    }
 
 }
