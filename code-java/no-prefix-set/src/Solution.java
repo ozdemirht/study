@@ -8,7 +8,8 @@ import java.util.stream.IntStream;
 import static java.util.stream.Collectors.toList;
 
 public class Solution {
-    public static void testInputFile(String fileName) throws IOException {
+
+    public static List<String> readTestInputFromFile(String fileName) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
 
         int n = Integer.parseInt(bufferedReader.readLine().trim());
@@ -24,21 +25,35 @@ public class Solution {
 
         bufferedReader.close();
 
+        return words;
+    }
+    public static void testWordList(String fileName, List<String> words){
         long testBegin = System.nanoTime();
-        Result.noPrefix2(words);
+        Result.noPrefix3(words);
         long testEnd = System.nanoTime();
-        System.out.println("Took["+fileName+"] "+(testEnd-testBegin)/1000+" msec");
+        System.out.println("Took["+fileName+",N="+words.size()+",noPrefix3] "+(testEnd-testBegin)/1000+" msec");
 
         testBegin = System.nanoTime();
         Result.noPrefix(words);
         testEnd = System.nanoTime();
-        System.out.println("Took["+fileName+"] "+(testEnd-testBegin)/1000+" msec");
+        System.out.println("Took["+fileName+",N="+words.size()+",noPrefix] "+(testEnd-testBegin)/1000+" msec");
+
+        testBegin = System.nanoTime();
+        Result.noPrefix4(words);
+        testEnd = System.nanoTime();
+        System.out.println("Took["+fileName+",N="+words.size()+",noPrefix4] "+(testEnd-testBegin)/1000+" msec");
 
     }
+
+
+    public static void testInputFile(String fileName) throws IOException {
+        List<String> words = readTestInputFromFile(fileName);
+        testWordList(fileName,words);
+    }
     public static void main(String[] args) throws IOException {
-        //testInputFile("./input-test/input01.txt");
-        //testInputFile("./input-test/input02.txt");
-        //testInputFile("./input-test/input08.txt");
+        testInputFile("./input-test/input01.txt");
+        testInputFile("./input-test/input02.txt");
+        testInputFile("./input-test/input08.txt");
         testInputFile("./input-test/input37.txt");
     }
 
