@@ -62,6 +62,7 @@ Output
 - name
 - email
 
+image::./docs/img/register-user-Register_User.png[UML Sequence Diagram: Register User^]
 
 === Use Case #1
 
