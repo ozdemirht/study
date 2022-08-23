@@ -29,6 +29,7 @@ Neo4JGraphDB --> Neo4JSession: Response with userId
 Neo4JSession --> AuthService:  Response(userId,)
 deactivate Neo4JSession
 AuthService -> AuthService : Generate Bearer Token
+AuthService -> AuthService : Cache Token
 AuthService --> SparkJava : <<token,userId,\nemail,name>>
 SparkJava --> AppUI: JSON-Response(token,\nuserId,email,name)
 AppUI --> User: Response

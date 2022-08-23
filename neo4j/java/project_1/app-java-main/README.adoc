@@ -50,17 +50,16 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 
 POST /auth/register
 
-Input
+[width="80%",cols="10,40,10,40",options="header"]
+|=========================================================
+| Input  |                     | Output |
+| Name   | Description         | Name | Description
+| name   | User's name         | name | User's name
+| email  | User's email        | email | User's email
+| password | User's credential | token | Bearer Token
+|          |                   | userId | User's unique identifier
+|=========================================================
 
-- name
-- email
-- password
-
-Output
-
-- JWTtoken
-- name
-- email
 
 image::./docs/img/register-user-Register_User.png[UML Sequence Diagram: Register User^]
 
