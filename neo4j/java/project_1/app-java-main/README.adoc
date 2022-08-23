@@ -3,7 +3,7 @@
 Prepared as part of link:https://graphacademy.neo4j.com/courses/app-java/[Building Neo4j Applications with Java course^].
 
 == Setup
-See link:./Setup.adoc[Setup Instructions^]
+See link:./setup.adoc[Setup Instructions^]
 
 
 == A Note on comments
