@@ -27,10 +27,16 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 [width="80%",cols="3,20",options="header"]
 |=========================================================
 |Relationship |Description
-|ACTED_IN  | a relationship from People node to Movie node and represents that a people (source node) acted in a movie (target node). Property of relationship represent role.
+|ACTED_IN  | a relationship from People node to Movie node and represents that a people (source node) acted in a movie (target node).
+Property of relationship represent role.
 |DIRECTED | a relationship from People node to Movie node and represents that a people (source node) directed a movie (target node).
-|GENRE_IN  |
-|RATED  |
+Each director can direct multiple movies.
+Each movie can have multiple directors.
+|GENRE_IN  | a relationship from movie node to Genre node and represents which genres a movie has.
+Each movie can be in multiple genre (cardinality).
+|RATED  | a relationship from a user node to movie node. Represents rating of movie by a user.
+Properties of relationship contain a rating and timestamp of rating event.
+Constraint is that each user rates a movie at most once.
 |=========================================================
 
 == Use Cases
