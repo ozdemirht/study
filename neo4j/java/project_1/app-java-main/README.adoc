@@ -90,13 +90,36 @@ GET /people/
 
 GET /people/:id/similar
 
-=== API: Get paginated list of movies that the given person acted in.
+=== API: Get paginated list of movies that the given person acted in
 
 GET /people/:id/acted
 
-=== API: Get paginated list of movies that the given person directed.
+==== Cypher Query
+
+--------------------------------------
+MATCH (:Person {tmdbId: $id})-[:ACTED_IN]->(m:Movie)
+WHERE m.`%s` IS NOT NULL
+RETURN m { .* } AS movie
+ORDER BY m.`%s` %s
+SKIP $skip
+LIMIT $limit
+--------------------------------------
+
+
+=== API: Get paginated list of movies that the given person directed
 
 GET /people/:id/directed
+
+==== Cypher Query
+
+--------------------------------------
+MATCH (:Person {tmdbId: $id})-[:DIRECTED]->(m:Movie)
+WHERE m.`%s` IS NOT NULL
+RETURN m { .* } AS movie
+ORDER BY m.`%s` %s
+SKIP $skip
+LIMIT $limit
+--------------------------------------
 
 === Use Case #1
 
