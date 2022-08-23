@@ -17,6 +17,8 @@ See link:./setup.adoc[Setup Instructions^]
 == A note on tools
 Used link:https://sparkjava.com/[Spark Java^] as Microservices framework.
 
+Used link:https://neo4j.com/developer/java[Neo4j Java Driver^] to connect to Neo4j instance.
+
 Authentication is handled with link:https://github.com/auth0/auth0-java[Auth0^] and link:https://jwt.io/[JWT Tokens^]
 
 Passwords are encrypted and verified with link:https://javadoc.io/doc/at.favre.lib/bcrypt/latest/index.html[bcrypt^]
