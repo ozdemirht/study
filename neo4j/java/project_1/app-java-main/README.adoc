@@ -44,6 +44,11 @@ Constraint is that each user rates a movie at most once.
 
 == Solutions
 
+=== APIs
+
+
+=== Use Case #1
+
 
 == A note on tools
 Used link:https://sparkjava.com/[Spark Java^] as Microservices framework.
