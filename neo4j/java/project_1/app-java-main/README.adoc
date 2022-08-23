@@ -86,7 +86,7 @@ POST /auth/authenticate
 
 GET /people/
 
-=== API : Get paginated list of similar people to the given person
+=== API : Get paginated list of people similar to the given person
 
 GET /people/:id/similar
 
@@ -148,6 +148,13 @@ Line 11-12 contain pagination logic in Cypher QL.
 12: LIMIT $limit
 --------------------------------------
 
+=== API: Get paginated list of movies similar to the given movie
+
+==== Cypher Query
+
+--------------------------------------
+1:
+--------------------------------------
 
 == Tools
 
