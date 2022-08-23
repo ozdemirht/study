@@ -5,6 +5,10 @@ Prepared as part of link:https://graphacademy.neo4j.com/courses/app-java/[Buildi
 == Setup
 See link:./setup.adoc[Setup Instructions^]
 
+== High Level Diagram
+
+image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
+
 == Data Model
 
 
