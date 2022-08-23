@@ -63,6 +63,21 @@ POST /auth/register
 
 image::./docs/img/register-user-Register_User.png[UML Sequence Diagram: Register User^]
 
+
+=== API : Authenticate User
+
+POST /auth/authenticate
+
+[width="80%",cols="10,40,10,40",options="header"]
+|=========================================================
+2+| Input Parameters         2+| Output Parameters
+| *Name*   | *Description*     | *Name* | *Description*
+| name     | User's name       | name   | User's name
+| password | User's credential | email  | User's email
+|          |                   | token  | Bearer Token
+|          |                   | userId | User's unique identifier
+|=========================================================
+
 === Use Case #1
 
 
