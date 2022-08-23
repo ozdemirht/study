@@ -148,7 +148,6 @@ Line 11-12 contain pagination logic in Cypher QL.
 12: LIMIT $limit
 --------------------------------------
 
-=== Use Case #1
 
 == Tools
 
