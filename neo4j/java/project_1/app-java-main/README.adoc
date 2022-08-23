@@ -44,7 +44,20 @@ Each user rates a movie at most once (constraint).
 
 == Solutions
 
-=== APIs
+=== API : Register User
+
+POST /auth/register
+
+Input
+
+- userId
+- name
+- email
+- password
+
+Output
+
+- JWTtoken
 
 
 === Use Case #1
