@@ -82,6 +82,22 @@ POST /auth/authenticate
 |          |                   | userId | User's unique identifier
 |=========================================================
 
+=== API : Get paginated list of people
+
+GET /people/
+
+=== API : Get paginated list of similar people to the given person
+
+GET /people/:id/similar
+
+=== API: Get paginated list of movies that the given person acted in.
+
+GET /people/:id/acted
+
+=== API: GET paginated list of movies that the given person directed.
+
+GET /people/:id/directed
+
 === Use Case #1
 
 
