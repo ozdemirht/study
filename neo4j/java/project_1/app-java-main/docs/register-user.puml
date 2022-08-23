@@ -9,20 +9,28 @@ box "REST Service" #LightBlue
 participant SparkJava as SparkJava
 participant AuthService as AuthService
 participant Neo4JDriver as Neo4JDriver
+participant Neo4JSession as Neo4JSession
 end box
 
 database Neo4JGraphDB as Neo4JGraphDB
 
-User -> AppUI: Registration page submit
-AppUI -> SparkJava: /auth/register
+User -> AppUI: Submit \nregistration page
+AppUI -> SparkJava: /auth/register\nname,email
 SparkJava -> AuthService : register()
-AuthService -> Neo4JDriver : writeTransaction(Cypher_Query)
-Neo4JDriver -> Neo4JGraphDB
+AuthService -> AuthService : encrypt plain password
+AuthService -> Neo4JDriver : session()
+activate Neo4JSession
+Neo4JDriver-->AuthService : <<session activated>>
 
-Neo4JGraphDB --> Neo4JDriver: Response
-Neo4JDriver --> AuthService: Authentication Response
-AuthService --> SparkJava
-SparkJava --> AppUI:
-AppUI --> User: Registration Result
+AuthService -> Neo4JSession : writeTransaction(Cypher_Query)
+Neo4JSession -> Neo4JGraphDB: Request(Cypher_Query)
+Neo4JGraphDB -> Neo4JGraphDB: Adds User Node \nand generates UUID
+Neo4JGraphDB --> Neo4JSession: Response with userId
+Neo4JSession --> AuthService:  Response(userId,)
+deactivate Neo4JSession
+AuthService -> AuthService : Generate Bearer Token
+AuthService --> SparkJava : <<token,userId,\nemail,name>>
+SparkJava --> AppUI: JSON-Response(token,\nuserId,email,name)
+AppUI --> User: Response
 
 @enduml
