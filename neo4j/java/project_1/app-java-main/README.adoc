@@ -86,9 +86,21 @@ POST /auth/authenticate
 
 GET /people/
 
+==== Cypher Query
+
+--------------------------------------
+1:
+--------------------------------------
+
 === API : Get paginated list of people similar to the given person
 
 GET /people/:id/similar
+
+==== Cypher Query
+
+--------------------------------------
+1:
+--------------------------------------
 
 === API: Get paginated list of movies that the given person acted in
 
