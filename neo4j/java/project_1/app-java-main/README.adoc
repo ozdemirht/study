@@ -121,8 +121,28 @@ GET /people/:id/directed
 6: LIMIT $limit
 --------------------------------------
 
-=== Use Case #1
+=== API: Get paginated list of reviewers of a given movie
 
+GET /movies/:id/ratings
+
+==== Cypher Query
+
+--------------------------------------
+ 1: MATCH (u:User)-[r:RATED]->(m:Movie {tmdbId: $id})
+ 2: WHERE u.name IS NOT NULL
+ 3: RETURN r {
+ 4:        .rating,
+ 5:        .timestamp,
+ 6:        user: u {
+ 7:                .userId, .name
+ 8:            }
+ 9:        } AS review
+10: ORDER BY r.%s %s
+11: SKIP $skip
+12: LIMIT $limit
+--------------------------------------
+
+=== Use Case #1
 
 == Tools
 
