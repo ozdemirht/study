@@ -16,10 +16,10 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 [width="80%",cols="3,20",options="header"]
 |=========================================================
 |Entity |Description
-|Movie  | node (entity) represents a movie, and properties contain release date, title, etc.
-|People | node (entity) represents an actor or a director in movies. Properties contain birth year.
-|Genre  | node (entity) represents a genre.
-|Users  | node (entity) represents a user who rated movies.
+|Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
+|People | node (entity) represents an actor or a director in movies. Node properties contain birth year.
+|Genre  | node (entity) represents a genre. Node properties contain label.
+|Users  | node (entity) represents a user who rated movies. Node properties contain user's name, etc.
 |=========================================================
 
 === Relationships
@@ -27,16 +27,16 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 [width="80%",cols="3,20",options="header"]
 |=========================================================
 |Relationship |Description
-|ACTED_IN  | a relationship from People node to Movie node and represents that a people (source node) acted in a movie (target node).
-Property of relationship represent role.
-|DIRECTED | a relationship from People node to Movie node and represents that a people (source node) directed a movie (target node).
+|ACTED_IN  | a relationship (edge) from People node to Movie node and represents that a people (source node) acted in a movie (target node).
+Properties of relationship contain role.
+|DIRECTED | a relationship (edge) from People node to Movie node and represents that a people (source node) directed a movie (target node).
 Each director can direct multiple movies.
 Each movie can have multiple directors.
-|GENRE_IN  | a relationship from movie node to Genre node and represents which genres a movie has.
+|GENRE_IN  | a relationship (edge) from movie node to Genre node and represents which genres a movie has.
 Each movie can be in multiple genre (cardinality).
-|RATED  | a relationship from a user node to movie node. Represents rating of movie by a user.
+|RATED  | a relationship (edge) from a user node to movie node. Represents rating of movie by a user.
 Properties of relationship contain a rating and timestamp of rating event.
-Constraint is that each user rates a movie at most once.
+Each user rates a movie at most once (constraint).
 |=========================================================
 
 == Use Cases
