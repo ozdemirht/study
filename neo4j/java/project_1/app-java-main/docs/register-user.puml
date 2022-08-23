@@ -3,6 +3,7 @@
 title "Register User"
 
 actor User as User
+
 box "Browser" #LightGreen
 participant AppUI as AppUI
 end box
