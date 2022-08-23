@@ -11,6 +11,19 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 
 == Data Model
 
+Entities
+
+- Movie node (entity) represents a movie, and properties contain release date, title, etc.
+- People node (entity) represents an actor or a director in movies. Properties contain birth year.
+- Genre node (entity) represents a genre.
+- Users node (entity) represents a user who rated movies.
+
+Relationships
+
+- ACTED_IN a relationship from People node to Movie node and represents that a people (source node) acted in a movie (target node). Property of relationship represent role.
+- DIRECTED a relationship from People node to Movie node and represents that a people (source node) directed a movie (target node).
+- GENRE_IN
+- RATED
 
 == Use Cases
 
