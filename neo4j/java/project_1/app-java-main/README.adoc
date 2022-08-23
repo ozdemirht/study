@@ -50,7 +50,6 @@ POST /auth/register
 
 Input
 
-- userId
 - name
 - email
 - password
