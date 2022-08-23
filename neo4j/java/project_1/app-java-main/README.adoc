@@ -127,6 +127,12 @@ GET /movies/:id/ratings
 
 ==== Cypher Query
 
+Line-1 has the movie identifier.
+Line 4-9 collects properties from RATED relationship and user node.
+Line 10, sorts the response by using the projected properties (in review).
+The first %s is a placeholder for the property and the second %s is a placeholder for order (ASC/DESC) of sorting.
+Line 11-12 contain pagination logic in Cypher QL.
+
 --------------------------------------
  1: MATCH (u:User)-[r:RATED]->(m:Movie {tmdbId: $id})
  2: WHERE u.name IS NOT NULL
