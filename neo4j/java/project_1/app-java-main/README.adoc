@@ -1,4 +1,8 @@
+:toc:
+
 = Building Neo4j Applications with Java
+
+== Introduction
 
 Prepared as part of link:https://graphacademy.neo4j.com/courses/app-java/[Building Neo4j Applications with Java course^].
 
