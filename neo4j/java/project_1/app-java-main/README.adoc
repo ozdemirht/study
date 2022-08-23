@@ -59,6 +59,8 @@ Input
 Output
 
 - JWTtoken
+- name
+- email
 
 
 === Use Case #1

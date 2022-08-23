@@ -1,0 +1,28 @@
+@startuml
+
+title "Register User"
+
+actor User as User
+participant AppUI as AppUI
+
+box "REST Service" #LightBlue
+participant SparkJava as SparkJava
+participant AuthService as AuthService
+participant Neo4JDriver as Neo4JDriver
+end box
+
+database Neo4JGraphDB as Neo4JGraphDB
+
+User -> AppUI: Registration page submit
+AppUI -> SparkJava: /auth/register
+SparkJava -> AuthService : register()
+AuthService -> Neo4JDriver : writeTransaction(Cypher_Query)
+Neo4JDriver -> Neo4JGraphDB
+
+Neo4JGraphDB --> Neo4JDriver: Response
+Neo4JDriver --> AuthService: Authentication Response
+AuthService --> SparkJava
+SparkJava --> AppUI:
+AppUI --> User: Registration Result
+
+@enduml
