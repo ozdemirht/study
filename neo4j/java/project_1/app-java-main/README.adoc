@@ -44,6 +44,8 @@ Each user rates a movie at most once (constraint).
 
 == Solutions
 
+link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
+
 === API : Register User
 
 POST /auth/register
