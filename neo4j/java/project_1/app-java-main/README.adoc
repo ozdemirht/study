@@ -11,18 +11,18 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 
 == Data Model
 
-=== Entities
+=== Nodes (Entities)
 
 [width="80%",cols="3,20",options="header"]
 |=========================================================
-|Entity |Description
+|Node |Description
 |Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
 |People | node (entity) represents an actor or a director in movies. Node properties contain birth year.
 |Genre  | node (entity) represents a genre. Node properties contain label.
 |Users  | node (entity) represents a user who rated movies. Node properties contain user's name, etc.
 |=========================================================
 
-=== Relationships
+=== Relationships (edges)
 
 [width="80%",cols="3,20",options="header"]
 |=========================================================
