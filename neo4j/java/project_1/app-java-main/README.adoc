@@ -94,7 +94,7 @@ GET /people/:id/similar
 
 GET /people/:id/acted
 
-=== API: GET paginated list of movies that the given person directed.
+=== API: Get paginated list of movies that the given person directed.
 
 GET /people/:id/directed
 
