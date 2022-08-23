@@ -5,9 +5,18 @@ Prepared as part of link:https://graphacademy.neo4j.com/courses/app-java/[Buildi
 == Setup
 See link:./setup.adoc[Setup Instructions^]
 
+== Data Model
+
+
+== Use Cases
+
+
+== Solutions
+
 
 == A note on tools
 Used link:https://sparkjava.com/[Spark Java^] as Microservices framework.
 
 Used link:https://asciidoc-py.github.io/index.html[Asciidoc^] to document.
 
+Used PlantUML to
