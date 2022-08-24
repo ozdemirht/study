@@ -100,6 +100,8 @@ GET /people/
 
 GET /people/:id/similar
 
+==== How to quantify similarity?
+
 ==== Cypher Query
 
 --------------------------------------
@@ -111,6 +113,14 @@ GET /people/:id/similar
 GET /people/:id/acted
 
 ==== Cypher Query
+
+A person can act in *multiple movies*.
+A person can have multiple roles in the same movie, hence, there can be multiple ACTED_IN edges between the same person and the same movie nodes.
+The endpoint /people/:id/acted captures this one-to-many relationship.
+A request contains Id of a person (Line 1).
+A response returns all properties of matching movie nodes (Line 3).
+A request contains a property to be used in sorting and order of sorting (Line 4).
+Line 5 and 6 handle pagination.
 
 --------------------------------------
 1: MATCH (:Person {tmdbId: $id})-[:ACTED_IN]->(m:Movie)
@@ -128,7 +138,15 @@ GET /people/:id/directed
 
 ==== Cypher Query
 
+A person can direct *multiple movies*.
+The endpoint /people/:id/directed captures this one-to-many relationship.
+A request contains Id of a person (Line 1).
+A response returns all properties of matching movie nodes (Line 3).
+A request contains a property to be used in sorting and order of sorting (Line 4).
+Line 5 and 6 handle pagination.
+
 --------------------------------------
+
 1: MATCH (:Person {tmdbId: $id})-[:DIRECTED]->(m:Movie)
 2: WHERE m.`%s` IS NOT NULL
 3: RETURN m { .* } AS movie
