@@ -13,6 +13,8 @@ See link:./setup.adoc[Setup Instructions^]
 
 image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 
+link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
+
 == Data Model
 
 === Nodes (Entities)
@@ -49,11 +51,6 @@ Director and Actor are additional labels in Person node.
 
 == Use Cases
 
-
-== Solutions
-
-link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
-
 === API : Register User
 
 POST /auth/register
@@ -68,9 +65,7 @@ POST /auth/register
 |          |                   | userId | User's unique identifier
 |=========================================================
 
-
 image::./docs/img/register-user-Register_User.png[UML Sequence Diagram: Register User^]
-
 
 === API : Authenticate User
 
