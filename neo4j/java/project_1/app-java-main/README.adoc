@@ -312,3 +312,16 @@ What are the top 3 directors with the highest number of movie releases?
 4: ORDER BY numberOfReleases DESC
 5: LIMIT 3
 --------------------------------------
+
+=== Top Actors by number of movies
+What are the top 3 actors with the highest number of movie releases since 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (p:Person)-[:ACTED_IN]->(m:Movie)
+2: WHERE m.year is NOT NULL and m.year>=2010
+3: RETURN p.name as Actor, count(distinct m) as numberOfMovies
+4: ORDER BY numberOfMovies DESC
+5: LIMIT 3
+--------------------------------------
