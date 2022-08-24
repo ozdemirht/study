@@ -271,3 +271,19 @@ Line 8-11 projects all properties of movie node and appends score.
 - *tmdbId* is an identifier for movies used by https://www.themoviedb.org. E.g., the movie Toy Story has the link https://www.themoviedb.org/movie/862.
 - link:https://portal.graphgist.org/graph_gists/flight-analyzer[Sample Graph Gist]
 - link:https://medium.com/swlh/sql-pagination-you-are-probably-doing-it-wrong-d0f2719cc166[Keyset pagination^]
+
+== Appendix
+
+=== Top Genres
+What are the top 3 movie genres since 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (m:Movie)-[r:IN_GENRE]->(g:Genre)
+2: WHERE m.year IS NOT NULL AND m.year >=2010
+3: RETURN g.name, count(*) as MovieCount
+4: ORDER BY MovieCount DESC
+5: LIMIT 3
+--------------------------------------
+
