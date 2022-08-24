@@ -18,7 +18,7 @@ See link:./setup.adoc[Setup Instructions^]
 
 == High Level Diagram
 
-image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
+image::./docs/img/HighLevelArchitectureDiagram.png["High Level Architecture",align="center",scaledwidth="75%"]
 
 link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 
