@@ -43,6 +43,9 @@ Properties of relationship contain a rating and timestamp of rating event.
 Each user rates a movie at most once (constraint).
 |=========================================================
 
+image::./docs/img/graph-data-model.png[Graph Data Model^]
+Obtained by *CALL db.schema.visualization* in Neo4J Browser by using Neo4J DB with Recommendations data set.
+
 == Use Cases
 
 
@@ -173,9 +176,12 @@ Line 11-12 contain pagination logic in Cypher QL.
 === Development
 
 - Used link:https://sparkjava.com/[Spark Java^] as Microservices framework to build REST APIs.
-- Used link:https://neo4j.com/developer/java[Neo4j Java Driver^] to connect to Neo4j Graph database instance, and Cypher to query.
+- Used link:https://neo4j.com/developer/java[Neo4j Java Driver^] to connect to Neo4j Graph database instance, and link:https://neo4j.com/product/cypher-graph-query-language/[Cypher^] to query.
 - Authentication is handled with link:https://github.com/auth0/auth0-java[Auth0^] and link:https://jwt.io/[JWT Tokens^]
 - Passwords are encrypted and verified with link:https://javadoc.io/doc/at.favre.lib/bcrypt/latest/index.html[bcrypt^]. Stored encrypted password in database.
+- movieId is an identifier for movies used by https://movielens.org. E.g., the movie Toy Story has the link https://movielens.org/movies/1.
+- imdbId is an identifier for movies used by http://www.imdb.com. E.g., the movie Toy Story has the link http://www.imdb.com/title/tt0114709/.
+- tmdbId is an identifier for movies used by https://www.themoviedb.org. E.g., the movie Toy Story has the link https://www.themoviedb.org/movie/862.
 
 === Testing
 
@@ -186,4 +192,4 @@ Line 11-12 contain pagination logic in Cypher QL.
 - Used link:https://asciidoc-py.github.io/index.html[Asciidoc^] to document.
 - Used link:https://plantuml.com/[PlantUML^] to add documentation in UML.
 - Used link:https://app.diagrams.net/[Draw.io^]
-
+- link:https://portal.graphgist.org/graph_gists/flight-analyzer[Sample Graph Gist]
