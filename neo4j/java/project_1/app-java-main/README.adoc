@@ -184,6 +184,8 @@ Line 11-12 contain pagination logic in Cypher QL.
 
 === API: Get paginated list of movies similar to the given movie
 
+==== How to quantify similarity?
+
 ==== Cypher Query
 
 --------------------------------------
