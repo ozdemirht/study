@@ -212,10 +212,30 @@ Line 11-12 contain pagination logic in Cypher QL.
 
 ==== How to quantify similarity?
 
+Similarity between two Movie nodes is quantified by the number of common actors, directors, and genre.
+This number is scaled by imdbRating.
+
 ==== Cypher Query
 
+Line 1 picks the connected movies nodes to given movie (id) via ACTED_IN, DIRECTED, or IN_GENRE edges.
+Line 2 filters out movie nodes with empty imdbRating property.
+Line 3 finds the count of common actors, directors, and genres.
+Line 4 calculates similarity score (=imdbRating * inCommon).
+Line 5 sorts movie nodes based on similarity score.
+Line 8-11 projects all properties of movie node and appends score.
+
 --------------------------------------
-1:
+ 1: MATCH (:Movie {tmdbId: $id})-[:IN_GENRE|ACTED_IN|DIRECTED]->()<-[:IN_GENRE|ACTED_IN|DIRECTED]-(m)
+ 2: WHERE m.imdbRating IS NOT NULL
+ 3: WITH m, count(*) AS inCommon
+ 4: WITH m, inCommon, m.imdbRating * inCommon AS score
+ 5: ORDER BY score DESC
+ 6: SKIP $skip
+ 7: LIMIT $limit
+ 8: RETURN m {
+ 9:     .*,
+10:     score: score,
+11: } AS movie
 --------------------------------------
 
 == Tools
