@@ -56,7 +56,7 @@ image::./docs/img/graph-data-model.png[Graph Data Model^]
 Obtained by *CALL db.schema.visualization* in Neo4J Browser by using Neo4J DB with Recommendations data set.
 Director and Actor are additional labels in Person node.
 
-== Use Cases
+== Application Interface
 
 === API : Register User
 
