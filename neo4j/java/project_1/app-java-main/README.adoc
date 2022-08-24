@@ -23,7 +23,7 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |=========================================================
 |Node |Description
 |Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
-|People | node (entity) represents an actor or a director in movies. Node properties contain birth year. Director and Actors are possible labels.
+|People | node (entity) represents an actor or a director in movies. Node properties contain birth year. Director and Actors are possible labels. These additional labels improve queries when Actor or Director nodes are in query criteria.
 |Genre  | node (entity) represents a genre. Node properties contain type of genre.
 |Users  | node (entity) represents a user who rated movies. Node properties contain user's name, email, password, etc.
 |=========================================================
@@ -34,7 +34,7 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |=========================================================
 |Relationship |Description
 |ACTED_IN  | a relationship (edge) from People node to Movie node and represents that a people (source node) acted in a movie (target node).
-Properties of relationship contain role. A person can act in multiple movies. A person can have multiple roles in the same movie. 
+Properties of relationship contain role. A person can act in multiple movies. A person can have multiple roles in the same movie.
 |DIRECTED | a relationship (edge) from People node to Movie node and represents that a people (source node) directed a movie (target node).
 Each director can direct multiple movies. A person can direct multiple movies.
 Each movie can have multiple directors.
