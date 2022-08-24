@@ -21,7 +21,7 @@ image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
 |=========================================================
 |Node |Description
 |Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
-|People | node (entity) represents an actor or a director in movies. Node properties contain birth year.
+|People | node (entity) represents an actor or a director in movies. Node properties contain birth year. Director and Actors are possible labels.
 |Genre  | node (entity) represents a genre. Node properties contain label.
 |Users  | node (entity) represents a user who rated movies. Node properties contain user's name, etc.
 |=========================================================
@@ -45,6 +45,7 @@ Each user rates a movie at most once (constraint).
 
 image::./docs/img/graph-data-model.png[Graph Data Model^]
 Obtained by *CALL db.schema.visualization* in Neo4J Browser by using Neo4J DB with Recommendations data set.
+Director and Actor are additional labels in Person node.
 
 == Use Cases
 
