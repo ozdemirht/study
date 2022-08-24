@@ -125,7 +125,7 @@ Line 8 uses the number of common Movie nodes to order by similarity.
 Line 9 and 10 handle pagination.
 
 Note that (actedCount+directedCount)>size(person.inCommon) is possible
-because a person can be actor and director and
+because a person can be an actor and a director as well as 
 a person can have multiple roles in the same movie.
 
 --------------------------------------
