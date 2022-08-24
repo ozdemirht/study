@@ -25,7 +25,7 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
 |People | node (entity) represents an actor or a director in movies. Node properties contain birth year. Director and Actors are possible labels.
 |Genre  | node (entity) represents a genre. Node properties contain type of genre.
-|Users  | node (entity) represents a user who rated movies. Node properties contain user's name, etc.
+|Users  | node (entity) represents a user who rated movies. Node properties contain user's name, email, password, etc.
 |=========================================================
 
 === Relationships (edges)
