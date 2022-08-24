@@ -9,6 +9,13 @@ Prepared as part of link:https://graphacademy.neo4j.com/courses/app-java/[Buildi
 == Setup
 See link:./setup.adoc[Setup Instructions^]
 
+== Functional Requirements
+
+- Allows registration of new users. Access is password controlled (basic authentication).
+- Supports paginated listing of people (actors, directors).
+- Supports paginated listing of people similar to a given person.
+- Supports paginated listing of movies similar to a given movie.
+
 == High Level Diagram
 
 image::./docs/img/HighLevelArchitectureDiagram.png[High Level Architecture^]
