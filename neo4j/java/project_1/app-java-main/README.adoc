@@ -24,7 +24,7 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |Node |Description
 |Movie  | node (entity) represents a movie, and node properties contain release date, title, etc.
 |People | node (entity) represents an actor or a director in movies. Node properties contain birth year. Director and Actors are possible labels.
-|Genre  | node (entity) represents a genre. Node properties contain label.
+|Genre  | node (entity) represents a genre. Node properties contain type of genre.
 |Users  | node (entity) represents a user who rated movies. Node properties contain user's name, etc.
 |=========================================================
 
@@ -34,13 +34,13 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |=========================================================
 |Relationship |Description
 |ACTED_IN  | a relationship (edge) from People node to Movie node and represents that a people (source node) acted in a movie (target node).
-Properties of relationship contain role.
+Properties of relationship contain role. A person can act in multiple movies.
 |DIRECTED | a relationship (edge) from People node to Movie node and represents that a people (source node) directed a movie (target node).
-Each director can direct multiple movies.
+Each director can direct multiple movies. A person can direct multiple movies.
 Each movie can have multiple directors.
-|GENRE_IN  | a relationship (edge) from movie node to Genre node and represents which genres a movie has.
-Each movie can be in multiple genre (cardinality).
-|RATED  | a relationship (edge) from a user node to movie node. Represents rating of movie by a user.
+|GENRE_IN  | a relationship (edge) from a Movie node to a Genre node and represents which genres a movie has.
+Each movie can have multiple genre (cardinality).
+|RATED  | a relationship (edge) from a User node to a Movie node. Represents rating of movie by a user.
 Properties of relationship contain a rating and timestamp of rating event.
 Each user rates a movie at most once (constraint).
 |=========================================================
@@ -87,8 +87,16 @@ GET /people/
 
 ==== Cypher Query
 
+A response returns all properties of Person nodes (Line 2).
+A request contains a property to be used in sorting and order of sorting (Line 3).
+Line 4 and 5 handle pagination.
+
 --------------------------------------
-1:
+1: MATCH (p:Person)
+2: RETURN p { .* } AS person
+3: ORDER BY p.%s %s
+4: SKIP $skip
+5: LIMIT $limit
 --------------------------------------
 
 === API : Get paginated list of people similar to the given person
@@ -96,11 +104,34 @@ GET /people/
 GET /people/:id/similar
 
 ==== How to quantify similarity?
+Similarity between two Person nodes is quantified by the number of common Movie nodes
+reached via ACTED_IN or DIRECTED edges.
 
 ==== Cypher Query
 
+Line 1 selects Person nodes who have a connection to Movie node a given person acted in or directed.
+Line 3 projects all properties of matched Person node.
+Line 4 counts the number of ACTED_IN edges from matched Person node to common Movie nodes.
+Line 5 counts the number of DIRECTED edges from matched Person node to common Movie nodes.
+Line 6 collects the title, and id properties of common Movie nodes.
+Line 8 uses the number of common Movie nodes to order by similarity.
+Line 9 and 10 handle pagination.
+
+Note that (actedCount+directedCount)>size(person.inCommon) is possible
+because a person can be actor and director and
+a person can have multiple roles in the same movie.
+
 --------------------------------------
-1:
+ 1: MATCH (:Person {tmdbId: $id})-[:ACTED_IN|DIRECTED]->(m)<-[r:ACTED_IN|DIRECTED]-(p)
+ 2: RETURN p {
+ 3: .*,
+ 4: actedCount: size((p)-[:ACTED_IN]->()),
+ 5: directedCount: size((p)-[:DIRECTED]->()),
+ 6: inCommon: collect(m {.tmdbId, .title, type: type(r)})
+ 7: } AS person
+ 8: ORDER BY size(person.inCommon) DESC
+ 9: SKIP $skip
+10: LIMIT $limit
 --------------------------------------
 
 === API: Get paginated list of movies that the given person acted in
