@@ -34,7 +34,7 @@ link:./src/main/java/neoflix/NeoflixApp.java[App] configures routes.
 |=========================================================
 |Relationship |Description
 |ACTED_IN  | a relationship (edge) from People node to Movie node and represents that a people (source node) acted in a movie (target node).
-Properties of relationship contain role. A person can act in multiple movies.
+Properties of relationship contain role. A person can act in multiple movies. A person can have multiple roles in the same movie. 
 |DIRECTED | a relationship (edge) from People node to Movie node and represents that a people (source node) directed a movie (target node).
 Each director can direct multiple movies. A person can direct multiple movies.
 Each movie can have multiple directors.
