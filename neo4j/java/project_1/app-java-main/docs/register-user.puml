@@ -1,6 +1,7 @@
 @startuml
 
-title "Register User"
+title "Register User (UML Sequence Diagram)"
+header By PlantUML (timo)
 
 actor User as User
 
@@ -20,6 +21,16 @@ database Neo4JGraphDB as Neo4JGraphDB
 User -> AppUI: Submit \nregistration page
 AppUI -> SparkJava: /auth/register\nname,email
 SparkJava -> AuthService : register()
+AuthService -> AuthService : Check email \nis unique
+
+alt#Red #LightPink Failure
+
+AuthService --> SparkJava : Error: \nAccount exists!
+SparkJava --> AppUI: Error: \nAccount exists!
+AppUI --> User: Response \nError: Account exists!
+
+else #LightBlue Continue
+
 AuthService -> AuthService : encrypt plain password
 AuthService -> Neo4JDriver : session()
 activate Neo4JSession
@@ -27,6 +38,17 @@ Neo4JDriver-->AuthService : <<session activated>>
 
 AuthService -> Neo4JSession : writeTransaction(Cypher_Query)
 Neo4JSession -> Neo4JGraphDB: Request(Cypher_Query)
+
+alt#Red #LightPink Failure
+
+Neo4JGraphDB --> Neo4JSession: ConstraintViolation (email)
+Neo4JSession --> AuthService:  ConstraintViolation (email)
+
+AuthService --> SparkJava : Error: \nAccount exists!
+SparkJava --> AppUI: Error: \nAccount exists!
+AppUI --> User: Response \nError: Account exists!
+
+else #LightBlue Continue
 Neo4JGraphDB -> Neo4JGraphDB: Adds User Node \nand generates UUID
 Neo4JGraphDB --> Neo4JSession: Response with userId
 Neo4JSession --> AuthService:  Response(userId,)
@@ -35,6 +57,9 @@ AuthService -> AuthService : Generate Bearer Token
 AuthService -> AuthService : Cache Token
 AuthService --> SparkJava : <<token,userId,\nemail,name>>
 SparkJava --> AppUI: JSON-Response(token,\nuserId,email,name)
-AppUI --> User: Response
+AppUI --> User: Response: \nSuccess
+
+end
+end
 
 @enduml
