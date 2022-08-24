@@ -274,7 +274,7 @@ Line 8-11 projects all properties of movie node and appends score.
 
 == Appendix
 
-=== Top Genres
+=== Top Genres by the number of movie releases
 What are the top 3 movie genres since 2010 (inclusive)?
 
 ==== Cypher Query
@@ -287,7 +287,7 @@ What are the top 3 movie genres since 2010 (inclusive)?
 5: LIMIT 3
 --------------------------------------
 
-=== Top Years
+=== Top Years by the number of movie releases
 What are the top 3 years with the highest number of movie releases?
 
 ==== Cypher Query
@@ -300,8 +300,8 @@ What are the top 3 years with the highest number of movie releases?
 5: LIMIT 3
 --------------------------------------
 
-=== Top Directors
-What are the top 3 directors with the highest number of movie releases?
+=== Top Directors by number of movie releases
+What are the top 3 directors with the highest number of movie releases since 2010 (inclusive)?
 
 ==== Cypher Query
 
