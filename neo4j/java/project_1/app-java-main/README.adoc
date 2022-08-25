@@ -347,7 +347,7 @@ Who are the top 10 actors by the total revenue of movies, released after 2010 (i
 
 Who are the top 10 directors by the total revenue of movies, released after 2010 (inclusive)?
 
-=== Cypher Query
+==== Cypher Query
 
 --------------------------------------
 1: MATCH (d:Person)-[:DIRECTED]->(m:Movie)
@@ -363,7 +363,7 @@ Who are the top 10 directors by the total revenue of movies, released after 2010
 
 Who are the top 10 director-actor pair by the total revenue of movies, released after 2010 (inclusive)?
 
-=== Cypher Query
+==== Cypher Query
 
 --------------------------------------
 1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person)
