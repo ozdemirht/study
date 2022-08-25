@@ -359,7 +359,7 @@ Who are the top 10 directors by the total revenue of movies, released after 2010
 7: LIMIT 10
 --------------------------------------
 
-== Top Director-Actor pair by revenue
+=== Top Director-Actor pair by revenue
 
 Who are the top 10 director-actor pair by the total revenue of movies, released after 2010 (inclusive)?
 
