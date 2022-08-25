@@ -336,7 +336,7 @@ Who are the top 10 actors by the total revenue of movies, released after 2010 (i
 1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)
 2: WHERE m.year IS NOT NULL
 3:        AND m.year>=2010 AND m.revenue IS NOT NULL
-4: WITH distinct a, m
+4: WITH distinct m, a
 5: RETURN a.name AS Actor, SUM(m.revenue) AS TotalRevenue,
 6:        collect(m.title) AS Titles
 7: ORDER by TotalRevenue DESC
@@ -371,7 +371,7 @@ Who are the top 10 director-actor pair by the total revenue of movies, released 
  2: WHERE m.year is not NULL
  3:        AND m.year>2010 AND m.revenue IS NOT NULL
  4:        AND a.tmdbId <> d.tmdbId
- 5: WITH distinct d,a,m
+ 5: WITH distinct a,d,m
  6: RETURN d.name AS Director, a.name as Actor
  7:        , SUM(m.revenue) as TotalRevenue
  8:        , collect(m.title) as titles
