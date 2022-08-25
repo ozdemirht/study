@@ -367,15 +367,16 @@ Who are the top 10 director-actor pair by the total revenue of movies, released 
 ==== Cypher Query
 
 --------------------------------------
-1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person)
-2: WHERE m.year is not NULL
-3:        AND m.year>2010 AND m.revenue IS NOT NULL
-4:        AND a.tmdbId <> d.tmdbId
-5: RETURN d.name AS Director, a.name as Actor
-6:        , SUM(m.revenue) as TotalRevenue
-7:        , collect(m.title) as titles
-8: ORDER by TotalRevenue DESC
-9: LIMIT 10
+ 1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person)
+ 2: WHERE m.year is not NULL
+ 3:        AND m.year>2010 AND m.revenue IS NOT NULL
+ 4:        AND a.tmdbId <> d.tmdbId
+ 5: WITH distinct d,a,m
+ 6: RETURN d.name AS Director, a.name as Actor
+ 7:        , SUM(m.revenue) as TotalRevenue
+ 8:        , collect(m.title) as titles
+ 9: ORDER by TotalRevenue DESC
+10: LIMIT 10
 --------------------------------------
 
 === Top Genres by revenue
