@@ -301,7 +301,7 @@ What are the top 3 years with the highest number of movie releases?
 --------------------------------------
 
 === Top Directors by number of movie releases
-What are the top 3 directors with the highest number of movie releases since 2010 (inclusive)?
+Who are the top 3 directors with the highest number of movie releases since 2010 (inclusive)?
 
 ==== Cypher Query
 
@@ -314,7 +314,7 @@ What are the top 3 directors with the highest number of movie releases since 201
 --------------------------------------
 
 === Top Actors by number of movies
-What are the top 3 actors with the highest number of movie releases since 2010 (inclusive)?
+Who are the top 3 actors with the highest number of movie releases since 2010 (inclusive)?
 
 ==== Cypher Query
 
@@ -324,4 +324,95 @@ What are the top 3 actors with the highest number of movie releases since 2010 (
 3: RETURN p.name as Actor, count(distinct m) as numberOfMovies
 4: ORDER BY numberOfMovies DESC
 5: LIMIT 3
+--------------------------------------
+
+=== Top Actors by revenue
+
+Who are the top 10 actors by the total revenue of movies, released after 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)
+2: WHERE m.year IS NOT NULL
+3:        AND m.year>=2010 AND m.revenue IS NOT NULL
+4: RETURN a.name AS Actor, SUM(m.revenue) AS TotalRevenue,
+5:        collect(m.title) AS Titles
+6: ORDER by TotalRevenue DESC
+7: LIMIT 10
+--------------------------------------
+
+
+== Top Directors by revenue
+
+Who are the top 10 directors by the total revenue of movies, released after 2010 (inclusive)?
+
+=== Cypher Query
+
+--------------------------------------
+1: MATCH (d:Person)-[:DIRECTED]->(m:Movie)
+2: WHERE m.year is not NULL AND m.year>2010
+3:        AND m.revenue IS NOT NULL
+4: RETURN d.name, SUM(m.revenue) as TotalRevenue
+5:        , collect(m.title) AS Titles
+6: ORDER by TotalRevenue DESC
+7: LIMIT 10
+--------------------------------------
+
+== Top Director-Actor pair by revenue
+
+Who are the top 10 director-actor pair by the total revenue of movies, released after 2010 (inclusive)?
+
+=== Cypher Query
+
+--------------------------------------
+1: MATCH (a:Person)-[:ACTED_IN]->(m:Movie)<-[:DIRECTED]-(d:Person)
+2: WHERE m.year is not NULL
+3:        AND m.year>2010 AND m.revenue IS NOT NULL
+4:        AND a.tmdbId <> d.tmdbId
+5: RETURN d.name AS Director, a.name as Actor
+6:        , SUM(m.revenue) as TotalRevenue
+7:        , collect(m.title) as titles
+8: ORDER by TotalRevenue DESC
+9: LIMIT 10
+--------------------------------------
+
+=== Top Genres by revenue
+What are the top 3 movie genres by total revenue of movies, released after 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (m:Movie)-[:IN_GENRE]->(g:Genre)
+2: WHERE m.year is not NULL AND m.year>2010 AND m.revenue IS NOT NULL
+3: RETURN g.name AS Genre, SUM(m.revenue) as TotalRevenue
+4: ORDER by TotalRevenue DESC
+5: LIMIT 10
+--------------------------------------
+
+=== Top Movies by revenue
+Find top 10 movies by revenue from movies released after 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (m:Movie)
+2: WHERE m.year is not NULL AND m.year>2010 AND m.revenue IS NOT NULL
+3: RETURN m.title AS Title, m.year AS Year, m.revenue as Revenue
+4: ORDER by m.revenue DESC
+5: LIMIT 10
+--------------------------------------
+
+=== Top Languages by number of released movies
+Find top 3 languages of movies released after 2010 (inclusive)?
+
+==== Cypher Query
+
+--------------------------------------
+1: MATCH (m:Movie)
+2: WHERE m.year IS NOT NULL AND m.year>=2010
+3: UNWIND m.languages as lang
+4: RETURN lang as Language, count(distinct m) as MovieCounts
+5: ORDER BY MovieCounts DESC
+6: LIMIT 3
 --------------------------------------
